@@ -16,7 +16,9 @@ const pool = new Pool({
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  port: process.env.DB_PORT
+  port: process.env.DB_PORT,
+  idle_timeout: 60 * 1000,
+  connect_timeout: 1200
 });
 //postgres://padron_xot0_user:MtuEnTA6ZoWWaCKLEAcJf9dRvnoXVLAK@dpg-cplg748cmk4c739o4ok0-a.oregon-postgres.render.com/padron_xot0
 const sql = postgres({
@@ -25,8 +27,8 @@ const sql = postgres({
     database             : process.env.DB_NAME,            // Name of database to connect to
     username             : process.env.DB_USER,            // Username of database user
     password             : process.env.DB_PASSWORD,            // Password of database user
-    idle_timeout: 60000,  // 1 minuto
-    connect_timeout: 120000  // 2 minutos
+    idle_timeout: 60 * 1000,
+    connect_timeout: 1200
   });
 
 // Middleware para parsear JSON
@@ -51,12 +53,12 @@ app.get('/search', async (req, res) => {
     console.log('39. Conectado a la base de datos');
     //const client = await pool.connect();
     
-    //const consulta = `select alicuota.razon_social, alicuota.cuit, alicuota.alicuota_percepcion, alicuota.alicuota_retencion, tipo.nombre as padron from alicuota inner join tipo on alicuota.id_tipo = tipo.id  where alicuota.cuit = '${cuit}' and alicuota.periodo_inicio_dia <= ${dia} and alicuota.periodo_inicio_mes = ${mes} and alicuota.periodo_inicio_ano = ${ano} and alicuota.periodo_fin_dia >= ${dia}`;
-    //console.log('41. consulta: '+consulta);
+    const consulta = `select alicuota.razon_social, alicuota.cuit, alicuota.alicuota_percepcion, alicuota.alicuota_retencion, tipo.nombre as padron from alicuota inner join tipo on alicuota.id_tipo = tipo.id  where alicuota.cuit = '20000163989'`;// and alicuota.periodo_inicio_dia <= ${dia} and alicuota.periodo_inicio_mes = ${mes} and alicuota.periodo_inicio_ano = ${ano} and alicuota.periodo_fin_dia >= ${dia}`;
+    console.log('41. consulta: '+consulta);
     //const result = await sql `select alicuota.razon_social, alicuota.cuit, alicuota.alicuota_percepcion, alicuota.alicuota_retencion, tipo.nombre as padron from alicuota inner join tipo on alicuota.id_tipo = tipo.id  where alicuota.cuit = '${cuit}' and alicuota.periodo_inicio_dia <= ${dia} and alicuota.periodo_inicio_mes = ${mes} and alicuota.periodo_inicio_ano = ${ano} and alicuota.periodo_fin_dia >= ${dia}`;
-    //const result = await pool.query(consulta);
-    const result = await sql`select alicuota.razon_social, alicuota.cuit, alicuota.alicuota_percepcion, alicuota.alicuota_retencion from alicuota where alicuota.cuit = '20000163989'`;
-    console.log('41. result: '+result);
+    const result = await pool.query(consulta);
+    //const result = await sql`select alicuota.razon_social, alicuota.cuit, alicuota.alicuota_percepcion, alicuota.alicuota_retencion from alicuota where alicuota.cuit = '20000163989'`;
+    //console.log('41. result: '+result);
     res.json(result.rows);
   } catch (error) {
     console.error('Error al realizar la consulta', error);
