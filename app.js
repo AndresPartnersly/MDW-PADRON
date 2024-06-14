@@ -52,11 +52,11 @@ app.get('/search', async (req, res) => {
     //const client = await pool.connect();
     
     //const consulta = `select alicuota.razon_social, alicuota.cuit, alicuota.alicuota_percepcion, alicuota.alicuota_retencion, tipo.nombre as padron from alicuota inner join tipo on alicuota.id_tipo = tipo.id  where alicuota.cuit = '${cuit}' and alicuota.periodo_inicio_dia <= ${dia} and alicuota.periodo_inicio_mes = ${mes} and alicuota.periodo_inicio_ano = ${ano} and alicuota.periodo_fin_dia >= ${dia}`;
-    console.log('41. consulta: '+consulta);
+    //console.log('41. consulta: '+consulta);
     //const result = await sql `select alicuota.razon_social, alicuota.cuit, alicuota.alicuota_percepcion, alicuota.alicuota_retencion, tipo.nombre as padron from alicuota inner join tipo on alicuota.id_tipo = tipo.id  where alicuota.cuit = '${cuit}' and alicuota.periodo_inicio_dia <= ${dia} and alicuota.periodo_inicio_mes = ${mes} and alicuota.periodo_inicio_ano = ${ano} and alicuota.periodo_fin_dia >= ${dia}`;
     //const result = await pool.query(consulta);
     const result = await sql`select alicuota.razon_social, alicuota.cuit, alicuota.alicuota_percepcion, alicuota.alicuota_retencion from alicuota where alicuota.cuit = '20000163989'`;
-    
+    console.log('41. result: '+result);
     res.json(result.rows);
   } catch (error) {
     console.error('Error al realizar la consulta', error);
