@@ -56,5 +56,9 @@ CREATE TEMP TABLE tabla3 (
 
 	copy tabla3 (col1, col2, col3) FROM 'C:/Users/Public/Documents/2025_04_TUCUMAN_padron_anexo_x_rg_23-02.txt' DELIMITER ';' ENCODING 'UTF8';
 
+--SELECT A TABLA TEMPORAL
 select tabla1.col1 as cuit, tabla1.col4 as desde, tabla1.col5 as hasta, tabla1.col6 as razon_social, tabla1.col7 as alicuota, tabla2.col6 as coeficiente, tabla3.col1 as anexo from tabla1 left join tabla2 on tabla1.col1 = tabla2.col1 left join tabla3 on tabla1.col1 = tabla3.col1 where tabla3.col1 is not null
-	
+
+--SELECT A TABLA ALICUOTA CRUZADA CON TABLATIPO
+SELECT alicuota.id, alicuota.id_tipo, tipo.nombre as padron, alicuota.cuit, alicuota.razon_social, alicuota.alicuota_percepcion, alicuota.alicuota_retencion, alicuota.periodo_desde, alicuota.periodo_hasta
+	FROM public.alicuota inner join tipo on tipo.id = alicuota.id_tipo where cuit='30500035788';	
