@@ -1,3 +1,4 @@
+--superadmin
 --EXPRESION REGULAR LIMPIEZA ARCHIVOS
 [^a-zA-Z0-9,;\s]
 
