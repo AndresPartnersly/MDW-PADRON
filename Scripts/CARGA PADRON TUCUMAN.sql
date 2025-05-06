@@ -1,8 +1,8 @@
 --EXPRESION REGULAR LIMPIEZA ARCHIVOS
 1. Remover filas de cabecera de la 1 a la 7
 2. Incluir separador de columnas con expresion regular en Node++
-		Buscar: (^.{192}) ==> 192: Posicion columna
-		Reemplazar: \1; => Agrega el punto y coma.
+		Buscar: (^.{192}) ==> 192: Posicion columna--11,17,22,31,42,192
+		Reemplazar: \1; => Agrega el punto y coma.--Reemplazar "-----" por "0    "
 3. A las lineas de contribuyentes exentos agregar alicuota 0.0 aplicando replace en Node++
 4. Guardar archivo en codificacion UTFC y aplicar expresion regular para remover caracteres invalidos: [^a-zA-Z0-9,;.\s]
 
