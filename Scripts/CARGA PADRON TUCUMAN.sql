@@ -19,21 +19,20 @@ CREATE TEMP TABLE tabla1 (
 	);
 
 --CARGA DE DATA EN TABLA TEMPORAL
-copy tabla1 (col1, col2, col3, col4, col5, col6, col7) FROM 'C:/Users/Public/Documents/2025_04_TUCUMAN_ACREDITAN.txt' DELIMITER ';' ENCODING 'UTF8';
+copy tabla1 (col1, col2, col3, col4, col5, col6, col7) FROM 'C:/Users/Public/Documents/03-TUCUMAN/05-2025/2025_05_ACREDITAN.TXT' DELIMITER ';' ENCODING 'UTF8';
 
 
 --INSECION DE TABLA TEMPORAL
-INSERT INTO alicuota (id_tipo, cuit, razon_social, alicuota_percepcion, alicuota_retencion, periodo_desde, periodo_hasta,coeficiente)
+INSERT INTO alicuota (id_tipo, cuit, razon_social, alicuota_percepcion, alicuota_retencion, periodo_desde, periodo_hasta)
 SELECT 
 	6 as id_tipo, 
-	TRIM(COALESCE(tabla1.col1,tabla2.col1)) as cuit,
-	TRIM(COALESCE(tabla1.col6,tabla2.col7)) as razon_social,
+	TRIM(tabla1.col1) as cuit,
+	TRIM(tabla1.col6) as razon_social,
     REPLACE(TRIM(tabla1.col7), ',', '.')::numeric percepcion,
     REPLACE(TRIM(tabla1.col7), ',', '.')::numeric retencion,
 	to_date((SUBSTRING(TRIM('20250501'), 1, 4)||'-'||SUBSTRING(TRIM('20250501'), 5, 2)||'-'||SUBSTRING(TRIM('20250501'), 7, 2)),'yyyy-mm-dd') periodo_desde,
-	to_date((SUBSTRING(TRIM('20250531'), 1, 4)||'-'||SUBSTRING(TRIM('20250531'), 5, 2)||'-'||SUBSTRING(TRIM('20250531'), 7, 2)),'yyyy-mm-dd') periodo_hasta,
-	REPLACE(TRIM(tabla2.col3), ',', '.')::numeric coeficiente
-FROM tabla1 full join tabla2 on tabla1.col1 = tabla2.col1;
+	to_date((SUBSTRING(TRIM('20250531'), 1, 4)||'-'||SUBSTRING(TRIM('20250531'), 5, 2)||'-'||SUBSTRING(TRIM('20250531'), 7, 2)),'yyyy-mm-dd') periodo_hasta
+FROM tabla1
 
 --COEFICIENTES
 1. Remover filas de cabecera de la 1 a la 7
@@ -55,8 +54,31 @@ CREATE TEMP TABLE tabla2 (
 	col8 text
 	);
 
-	copy tabla2 (col1, col2, col3, col4, col5, col6, col7, col8) FROM 'C:/Users/Public/Documents/2025_04_TUCUMAN_archivocoefrg116.txt' DELIMITER ';' ENCODING 'UTF8';
+	copy tabla2 (col1, col2, col3, col4, col5, col6, col7, col8) FROM 'C:/Users/Public/Documents/03-TUCUMAN/05-2025/2025_05_archivocoefrg116.TXT' DELIMITER ';' ENCODING 'UTF8';
 
+INSERT INTO alicuota (id_tipo, cuit, razon_social, alicuota_percepcion, alicuota_retencion, periodo_desde, periodo_hasta, coeficiente)
+SELECT 
+	7 as id_tipo, 
+	TRIM(tabla2.col1) as cuit,
+	TRIM(tabla2.col7) as razon_social,
+    REPLACE(TRIM(tabla2.col8), ',', '.')::numeric percepcion,
+    REPLACE(TRIM(tabla2.col8), ',', '.')::numeric retencion,
+	to_date((SUBSTRING(TRIM('20250501'), 1, 4)||'-'||SUBSTRING(TRIM('20250501'), 5, 2)||'-'||SUBSTRING(TRIM('20250501'), 7, 2)),'yyyy-mm-dd') periodo_desde,
+	to_date((SUBSTRING(TRIM('20250531'), 1, 4)||'-'||SUBSTRING(TRIM('20250531'), 5, 2)||'-'||SUBSTRING(TRIM('20250531'), 7, 2)),'yyyy-mm-dd') periodo_hasta,
+	REPLACE(TRIM(tabla2.col3), ',', '.')::numeric coeficiente
+FROM tabla2
+
+
+
+
+
+
+
+
+
+
+
+/*
 
 --TABLA TEMPORAL ANEXOS
 CREATE TEMP TABLE tabla3 (
@@ -76,4 +98,4 @@ select tabla1.col1 as cuit, tabla1.col4 as desde, tabla1.col5 as hasta, tabla1.c
 
 --SELECT A TABLA ALICUOTA CRUZADA CON TABLATIPO
 SELECT alicuota.id, alicuota.id_tipo, tipo.nombre as padron, alicuota.cuit, alicuota.razon_social, alicuota.alicuota_percepcion, alicuota.alicuota_retencion, alicuota.periodo_desde, alicuota.periodo_hasta
-	FROM public.alicuota inner join tipo on tipo.id = alicuota.id_tipo where cuit='30500035788';	
+	FROM public.alicuota inner join tipo on tipo.id = alicuota.id_tipo where cuit='30500035788';	*/
