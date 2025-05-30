@@ -1,6 +1,6 @@
 --superadmin
 --EXPRESION REGULAR LIMPIEZA ARCHIVOS
---Buscar ;\r?$ y reemplazar por nada
+--Buscar ;\r?$ y reemplazar por nada (esto quita las comas al final del archivo)
 
 --CREACION TABLA TEMPORAL PERCEPCIONES
 CREATE TEMP TABLE temp_percepciones (
@@ -16,7 +16,7 @@ CREATE TEMP TABLE temp_percepciones (
 	col10 text
 	);
 
-copy temp_percepciones FROM 'C:/Users/Public/Documents/04-ARBA/05-2025/PadronRGSPer052025.TXT' WITH (
+copy temp_percepciones FROM 'C:/Users/Public/Documents/04-ARBA/06-2025/PadronRGS062025/PadronRGSPer062025.TXT' WITH (
   FORMAT csv,
   DELIMITER ';',
   HEADER FALSE
@@ -36,7 +36,7 @@ CREATE TEMP TABLE temp_retenciones (
 	col10 text
 	);
 
-copy temp_retenciones FROM 'C:/Users/Public/Documents/04-ARBA/05-2025/PadronRGSRet052025.TXT' WITH (
+copy temp_retenciones FROM 'C:/Users/Public/Documents/04-ARBA/06-2025/PadronRGS062025/PadronRGSRet062025.TXT' WITH (
   FORMAT csv,
   DELIMITER ';',
   HEADER FALSE
@@ -49,8 +49,8 @@ SELECT
 	2 as id_tipo, 
 	TRIM(COALESCE(temp_percepciones.col5,temp_retenciones.col5)) as cuit,
 	TRIM(COALESCE(temp_percepciones.col5,temp_retenciones.col5)) as razon_social,
-    REPLACE(TRIM(COALESCE(temp_percepciones.col9,'0,00')), ',', '.')::numeric percepcion,
-	REPLACE(TRIM(COALESCE(temp_retenciones.col9,'0,00')), ',', '.')::numeric retencion,
-	to_date((SUBSTRING(TRIM('20250501'), 1, 4)||'-'||SUBSTRING(TRIM('20250501'), 5, 2)||'-'||SUBSTRING(TRIM('20250501'), 7, 2)),'yyyy-mm-dd') periodo_desde,
-	to_date((SUBSTRING(TRIM('20250531'), 1, 4)||'-'||SUBSTRING(TRIM('20250531'), 5, 2)||'-'||SUBSTRING(TRIM('20250531'), 7, 2)),'yyyy-mm-dd') periodo_hasta
+    REPLACE(TRIM(COALESCE(temp_percepciones.col9,null)), ',', '.')::numeric percepcion,
+	REPLACE(TRIM(COALESCE(temp_retenciones.col9,null)), ',', '.')::numeric retencion,
+	to_date((SUBSTRING(TRIM('20250601'), 1, 4)||'-'||SUBSTRING(TRIM('20250601'), 5, 2)||'-'||SUBSTRING(TRIM('20250601'), 7, 2)),'yyyy-mm-dd') periodo_desde,
+	to_date((SUBSTRING(TRIM('20250630'), 1, 4)||'-'||SUBSTRING(TRIM('20250630'), 5, 2)||'-'||SUBSTRING(TRIM('20250630'), 7, 2)),'yyyy-mm-dd') periodo_hasta
 FROM temp_percepciones full join temp_retenciones on temp_percepciones.col5 = temp_retenciones.col5
