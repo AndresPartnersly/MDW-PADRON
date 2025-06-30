@@ -19,7 +19,7 @@ CREATE TEMP TABLE tabla1 (
 	);
 
 --CARGA DE DATA EN TABLA TEMPORAL
-copy tabla1 (col1, col2, col3, col4, col5, col6, col7) FROM 'C:/Users/Public/Documents/03-TUCUMAN/05-2025/2025_05_ACREDITAN.TXT' DELIMITER ';' ENCODING 'UTF8';
+copy tabla1 (col1, col2, col3, col4, col5, col6, col7) FROM 'C:/Users/Public/Documents/03-TUCUMAN/06-2025/ACREDITAN_06_2025.TXT' DELIMITER ';' ENCODING 'UTF8';
 
 
 --INSECION DE TABLA TEMPORAL
@@ -30,8 +30,8 @@ SELECT
 	TRIM(tabla1.col6) as razon_social,
     REPLACE(TRIM(tabla1.col7), ',', '.')::numeric percepcion,
     REPLACE(TRIM(tabla1.col7), ',', '.')::numeric retencion,
-	to_date((SUBSTRING(TRIM('20250501'), 1, 4)||'-'||SUBSTRING(TRIM('20250501'), 5, 2)||'-'||SUBSTRING(TRIM('20250501'), 7, 2)),'yyyy-mm-dd') periodo_desde,
-	to_date((SUBSTRING(TRIM('20250531'), 1, 4)||'-'||SUBSTRING(TRIM('20250531'), 5, 2)||'-'||SUBSTRING(TRIM('20250531'), 7, 2)),'yyyy-mm-dd') periodo_hasta
+	to_date((SUBSTRING(TRIM('20250601'), 1, 4)||'-'||SUBSTRING(TRIM('20250601'), 5, 2)||'-'||SUBSTRING(TRIM('20250601'), 7, 2)),'yyyy-mm-dd') periodo_desde,
+	to_date((SUBSTRING(TRIM('20250630'), 1, 4)||'-'||SUBSTRING(TRIM('20250630'), 5, 2)||'-'||SUBSTRING(TRIM('20250630'), 7, 2)),'yyyy-mm-dd') periodo_hasta
 FROM tabla1
 
 --COEFICIENTES
@@ -40,6 +40,7 @@ FROM tabla1
 		Buscar: (^.{192}) ==> 192: Posicion columna--11,17,24, 27, 34, 37, 190
 		Reemplazar: \1; => Agrega el punto y coma.
 3. A las lineas de contribuyentes exentos agregar alicuota 0.0 aplicando replace en Node++--Reemplazar "-.----" por "0.0000"
+3. A las lineas de contribuyentes exentos agregar alicuota 0.0 aplicando replace en Node++--Reemplazar "-----" por "0    "
 4. Guardar archivo en codificacion UTFC y aplicar expresion regular para remover caracteres invalidos: [^a-zA-Z0-9,;.\s]
 
 --TABLA TEMPORAL COEFICIENTES
@@ -54,7 +55,7 @@ CREATE TEMP TABLE tabla2 (
 	col8 text
 	);
 
-	copy tabla2 (col1, col2, col3, col4, col5, col6, col7, col8) FROM 'C:/Users/Public/Documents/03-TUCUMAN/05-2025/2025_05_archivocoefrg116.TXT' DELIMITER ';' ENCODING 'UTF8';
+	copy tabla2 (col1, col2, col3, col4, col5, col6, col7, col8) FROM 'C:/Users/Public/Documents/03-TUCUMAN/06-2025/archivocoefrg116_06_2025.TXT' DELIMITER ';' ENCODING 'UTF8';
 
 INSERT INTO alicuota (id_tipo, cuit, razon_social, alicuota_percepcion, alicuota_retencion, periodo_desde, periodo_hasta, coeficiente)
 SELECT 
@@ -63,8 +64,8 @@ SELECT
 	TRIM(tabla2.col7) as razon_social,
     REPLACE(TRIM(tabla2.col8), ',', '.')::numeric percepcion,
     REPLACE(TRIM(tabla2.col8), ',', '.')::numeric retencion,
-	to_date((SUBSTRING(TRIM('20250501'), 1, 4)||'-'||SUBSTRING(TRIM('20250501'), 5, 2)||'-'||SUBSTRING(TRIM('20250501'), 7, 2)),'yyyy-mm-dd') periodo_desde,
-	to_date((SUBSTRING(TRIM('20250531'), 1, 4)||'-'||SUBSTRING(TRIM('20250531'), 5, 2)||'-'||SUBSTRING(TRIM('20250531'), 7, 2)),'yyyy-mm-dd') periodo_hasta,
+	to_date((SUBSTRING(TRIM('20250601'), 1, 4)||'-'||SUBSTRING(TRIM('20250601'), 5, 2)||'-'||SUBSTRING(TRIM('20250601'), 7, 2)),'yyyy-mm-dd') periodo_desde,
+	to_date((SUBSTRING(TRIM('20250630'), 1, 4)||'-'||SUBSTRING(TRIM('20250630'), 5, 2)||'-'||SUBSTRING(TRIM('20250630'), 7, 2)),'yyyy-mm-dd') periodo_hasta,
 	REPLACE(TRIM(tabla2.col3), ',', '.')::numeric coeficiente
 FROM tabla2
 
