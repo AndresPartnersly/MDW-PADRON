@@ -8,6 +8,7 @@
 
 
 --CREACION TABLA TEMPORAL
+drop table tabla1
 CREATE TEMP TABLE tabla1 (
     col1 text,
     col2 text,
@@ -44,6 +45,7 @@ FROM tabla1
 4. Guardar archivo en codificacion UTFC y aplicar expresion regular para remover caracteres invalidos: [^a-zA-Z0-9,;.\s]
 
 --TABLA TEMPORAL COEFICIENTES
+drop table tabla2;
 CREATE TEMP TABLE tabla2 (
     col1 text,
     col2 text,
