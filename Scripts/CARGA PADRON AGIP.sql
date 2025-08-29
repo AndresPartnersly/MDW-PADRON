@@ -19,7 +19,7 @@ CREATE TEMP TABLE temp_csv_upload (
 	);
 
 --CARGA DE DATA EN TABLA TEMPORAL
-copy temp_csv_upload (col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11, col12) FROM 'C:/Users/Public/Documents/01-AGIP/08-2025/ARDJU008082025/ARDJU008082025.txt' DELIMITER ';' ENCODING 'UTF8';
+copy temp_csv_upload (col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11, col12) FROM 'C:/Users/Public/Documents/01-AGIP/09-2025/ARDJU008092025/ARDJU008092025.txt' DELIMITER ';' ENCODING 'UTF8';
 
 
 --INSECION DE TABLA TEMPORAL
@@ -45,6 +45,6 @@ select alicuota.id,
 from
 	alicuota 
 where alicuota.cuit = '20003535542' 
-and alicuota.periodo_desde <= TO_DATE('2025-06-01','yyyy-mm-dd')
-and alicuota.periodo_hasta >= TO_DATE('2025-06-30','yyyy-mm-dd')
+and alicuota.periodo_desde <= TO_DATE('2025-09-01','yyyy-mm-dd')
+and alicuota.periodo_hasta >= TO_DATE('2025-09-30','yyyy-mm-dd')
 and alicuota.id_tipo = 1
