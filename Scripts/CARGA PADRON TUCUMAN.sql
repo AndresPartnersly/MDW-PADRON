@@ -57,7 +57,7 @@ CREATE TEMP TABLE tabla2 (
 	col8 text
 	);
 
-	copy tabla2 (col1, col2, col3, col4, col5, col6, col7, col8) FROM 'C:/Users/Public/Documents/03-TUCUMAN/09-2025/archivocoefrg116.TXT' DELIMITER ';' ENCODING 'UTF8';
+	copy tabla2 (col1, col2, col3, col4, col5, col6, col7, col8) FROM 'C:/Users/Public/Documents/03-TUCUMAN/10-2025/archivocoefrg116.TXT' DELIMITER ';' ENCODING 'UTF8';
 
 INSERT INTO alicuota (id_tipo, cuit, razon_social, alicuota_percepcion, alicuota_retencion, periodo_desde, periodo_hasta, coeficiente)
 SELECT 
