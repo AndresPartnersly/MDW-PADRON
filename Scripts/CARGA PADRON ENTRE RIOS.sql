@@ -20,7 +20,7 @@ CREATE TEMP TABLE temp_entre_rios (
 	);
 
 --CARGA DE DATA EN TABLA TEMPORAL
-copy temp_entre_rios (col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11, col12) FROM 'C:/Users/Public/Documents/02-ENTRE RIOS/10-2025/PadronRetPer202510.txt' DELIMITER ';' ENCODING 'UTF8';
+copy temp_entre_rios (col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11, col12) FROM 'C:/Users/Public/Documents/02-ENTRE RIOS/11-2025/PadronRetPer202511.txt' DELIMITER ';' ENCODING 'UTF8';
 
 
 
@@ -48,4 +48,4 @@ select alicuota.id,
 from
 	alicuota 
 where alicuota.cuit = '34684733496' 
-and alicuota.id_tipo = 3
+and alicuota.id_tipo = 4
