@@ -45,6 +45,6 @@ select alicuota.id,
 from
 	alicuota 
 where alicuota.cuit = '20003535542' 
-and alicuota.periodo_desde <= TO_DATE('2025-09-01','yyyy-mm-dd')
-and alicuota.periodo_hasta >= TO_DATE('2025-09-30','yyyy-mm-dd')
+and alicuota.periodo_desde <= TO_DATE('2025-10-01','yyyy-mm-dd')
+and alicuota.periodo_hasta >= TO_DATE('2025-10-31','yyyy-mm-dd')
 and alicuota.id_tipo = 1
