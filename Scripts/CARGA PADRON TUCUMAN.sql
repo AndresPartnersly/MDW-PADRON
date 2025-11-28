@@ -61,7 +61,7 @@ CREATE TEMP TABLE tabla2 (
 
 INSERT INTO alicuota (id_tipo, cuit, razon_social, alicuota_percepcion, alicuota_retencion, periodo_desde, periodo_hasta, coeficiente)
 SELECT 
-	5 as id_tipo, 
+	7 as id_tipo, 
 	TRIM(tabla2.col1) as cuit,
 	TRIM(tabla2.col7) as razon_social,
     REPLACE(TRIM(tabla2.col8), ',', '.')::numeric percepcion,
