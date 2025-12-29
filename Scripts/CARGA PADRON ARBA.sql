@@ -16,7 +16,7 @@ CREATE TEMP TABLE temp_percepciones (
 	col10 text
 	);
 
-copy temp_percepciones FROM 'C:/Users/Public/Documents/04-ARBA/12-2025/PadronRGS122025/PadronRGSPer122025.TXT' WITH (
+copy temp_percepciones FROM 'C:/Users/Public/Documents/04-ARBA/01-2026/PadronRGS012026/PadronRGSPer012026.TXT' WITH (
   FORMAT csv,
   DELIMITER ';',
   HEADER FALSE
@@ -36,7 +36,7 @@ CREATE TEMP TABLE temp_retenciones (
 	col10 text
 	);
 
-copy temp_retenciones FROM 'C:/Users/Public/Documents/04-ARBA/12-2025/PadronRGS122025/PadronRGSRet122025.TXT' WITH (
+copy temp_retenciones FROM 'C:/Users/Public/Documents/04-ARBA/01-2026/PadronRGS012026/PadronRGSRet012026.TXT' WITH (
   FORMAT csv,
   DELIMITER ';',
   HEADER FALSE
@@ -51,6 +51,6 @@ SELECT
 	TRIM(COALESCE(temp_percepciones.col5,temp_retenciones.col5)) as razon_social,
     REPLACE(TRIM(COALESCE(temp_percepciones.col9,null)), ',', '.')::numeric percepcion,
 	REPLACE(TRIM(COALESCE(temp_retenciones.col9,null)), ',', '.')::numeric retencion,
-	to_date((SUBSTRING(TRIM('20251101'), 1, 4)||'-'||SUBSTRING(TRIM('20251101'), 5, 2)||'-'||SUBSTRING(TRIM('20251101'), 7, 2)),'yyyy-mm-dd') periodo_desde,
-	to_date((SUBSTRING(TRIM('20251130'), 1, 4)||'-'||SUBSTRING(TRIM('20251130'), 5, 2)||'-'||SUBSTRING(TRIM('20251130'), 7, 2)),'yyyy-mm-dd') periodo_hasta
+	to_date((SUBSTRING(TRIM('20260101'), 1, 4)||'-'||SUBSTRING(TRIM('20260101'), 5, 2)||'-'||SUBSTRING(TRIM('20260101'), 7, 2)),'yyyy-mm-dd') periodo_desde,
+	to_date((SUBSTRING(TRIM('20260131'), 1, 4)||'-'||SUBSTRING(TRIM('20260131'), 5, 2)||'-'||SUBSTRING(TRIM('20260131'), 7, 2)),'yyyy-mm-dd') periodo_hasta
 FROM temp_percepciones full join temp_retenciones on temp_percepciones.col5 = temp_retenciones.col5
