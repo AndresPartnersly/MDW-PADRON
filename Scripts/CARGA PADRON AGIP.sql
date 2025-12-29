@@ -19,7 +19,7 @@ CREATE TEMP TABLE temp_csv_upload (
 	);
 
 --CARGA DE DATA EN TABLA TEMPORAL
-copy temp_csv_upload (col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11, col12) FROM 'C:/Users/Public/Documents/01-AGIP/12-2025/ARDJU008122025/ARDJU008122025.txt' DELIMITER ';' ENCODING 'UTF8';
+copy temp_csv_upload (col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11, col12) FROM 'C:/Users/Public/Documents/01-AGIP/01-2026/ARDJU008012026/ARDJU008012026.txt' DELIMITER ';' ENCODING 'UTF8';
 
 
 --INSECION DE TABLA TEMPORAL
