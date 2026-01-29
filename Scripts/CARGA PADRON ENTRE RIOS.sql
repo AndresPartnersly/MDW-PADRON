@@ -20,7 +20,7 @@ CREATE TEMP TABLE temp_entre_rios (
 	);
 
 --CARGA DE DATA EN TABLA TEMPORAL
-copy temp_entre_rios (col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11, col12) FROM 'C:/Users/Public/Documents/02-ENTRE RIOS/01-2026/PadronRetPer202601.txt' DELIMITER ';' ENCODING 'UTF8';
+copy temp_entre_rios (col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11, col12) FROM 'C:/Users/Public/Documents/02-ENTRE RIOS/02-2026/PadronRetPer202602.txt' DELIMITER ';' ENCODING 'UTF8';
 
 
 
@@ -28,7 +28,7 @@ copy temp_entre_rios (col1, col2, col3, col4, col5, col6, col7, col8, col9, col1
 --INSECION DE TABLA TEMPORAL
 INSERT INTO alicuota (id_tipo, cuit, razon_social, alicuota_percepcion, alicuota_retencion, periodo_desde, periodo_hasta)
 SELECT 
-	4 as id_tipo, 
+	3 as id_tipo, 
 	TRIM(col4) as cuit,
 	TRIM(col12) as razon_social,
     REPLACE(TRIM(col8), ',', '.')::numeric percepcion,
