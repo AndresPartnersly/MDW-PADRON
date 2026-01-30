@@ -16,7 +16,7 @@ CREATE TEMP TABLE temp_percepciones (
 	col10 text
 	);
 
-copy temp_percepciones FROM 'C:/Users/Public/Documents/04-ARBA/01-2026/PadronRGS012026/PadronRGSPer012026.TXT' WITH (
+copy temp_percepciones FROM 'C:/Users/Public/Documents/04-ARBA/02-2026/PadronRGS022026/PadronRGSPer022026.TXT' WITH (
   FORMAT csv,
   DELIMITER ';',
   HEADER FALSE
@@ -36,7 +36,7 @@ CREATE TEMP TABLE temp_retenciones (
 	col10 text
 	);
 
-copy temp_retenciones FROM 'C:/Users/Public/Documents/04-ARBA/01-2026/PadronRGS012026/PadronRGSRet012026.TXT' WITH (
+copy temp_retenciones FROM 'C:/Users/Public/Documents/04-ARBA/02-2026/PadronRGS022026/PadronRGSRet022026.TXT' WITH (
   FORMAT csv,
   DELIMITER ';',
   HEADER FALSE
