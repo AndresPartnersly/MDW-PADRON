@@ -24,8 +24,7 @@ CREATE TEMP TABLE temp_csv_upload (
 	);
 
 --CARGA DE DATA EN TABLA TEMPORAL
-copy temp_csv_upload (col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11, col12) FROM 'C:/Users/Public/Documents/05-SANTA FE/04-2026/PARP_202604.txt' DELIMITER ';' ENCODING 'UTF8';
-
+copy temp_csv_upload (col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11, col12) FROM '/tmp/SANTAFE/PARP_202605.txt' DELIMITER ';' ENCODING 'UTF8';
 
 --INSECION DE TABLA TEMPORAL
 INSERT INTO alicuota (id_tipo, cuit, razon_social, alicuota_percepcion, alicuota_retencion, periodo_desde, periodo_hasta)
@@ -39,17 +38,3 @@ SELECT
 	to_date((SUBSTRING(TRIM(col3), 5, 4)||'-'||SUBSTRING(TRIM(col3), 3, 2)||'-'||SUBSTRING(TRIM(col3), 1, 2)),'yyyy-mm-dd') periodo_hasta
 FROM temp_csv_upload;
 
-select alicuota.id,
-	alicuota.id_tipo,
-	alicuota.cuit, 
-	alicuota.razon_social,
-	alicuota.alicuota_percepcion,
-	alicuota.alicuota_retencion,
-	alicuota.periodo_desde,
-	alicuota.periodo_hasta 
-from
-	alicuota 
-where alicuota.cuit = '20003535542' 
-and alicuota.periodo_desde <= TO_DATE('2025-12-01','yyyy-mm-dd')
-and alicuota.periodo_hasta >= TO_DATE('2025-12-31','yyyy-mm-dd')
-and alicuota.id_tipo = 1
