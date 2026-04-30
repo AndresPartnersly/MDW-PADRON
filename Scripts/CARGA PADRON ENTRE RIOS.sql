@@ -20,9 +20,7 @@ CREATE TEMP TABLE temp_entre_rios (
 	);
 
 --CARGA DE DATA EN TABLA TEMPORAL
-copy temp_csv_upload (col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11, col12) FROM '/tmp/ENTRERIOS/PadronRetPer202605.txt' DELIMITER ';' ENCODING 'UTF8';
-
-
+copy temp_entre_rios (col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11, col12) FROM '/tmp/PADRONES/ENTRERIOS/PadronRetPer202605.txt' DELIMITER ';' ENCODING 'UTF8';
 
 
 --INSECION DE TABLA TEMPORAL
@@ -36,16 +34,3 @@ SELECT
 	to_date((SUBSTRING(TRIM(col2), 5, 4)||'-'||SUBSTRING(TRIM(col2), 3, 2)||'-'||SUBSTRING(TRIM(col2), 1, 2)),'yyyy-mm-dd') periodo_desde,
 	to_date((SUBSTRING(TRIM(col3), 5, 4)||'-'||SUBSTRING(TRIM(col3), 3, 2)||'-'||SUBSTRING(TRIM(col3), 1, 2)),'yyyy-mm-dd') periodo_hasta
 FROM temp_entre_rios;
-
-select alicuota.id,
-	alicuota.id_tipo,
-	alicuota.cuit, 
-	alicuota.razon_social,
-	alicuota.alicuota_percepcion,
-	alicuota.alicuota_retencion,
-	alicuota.periodo_desde,
-	alicuota.periodo_hasta 
-from
-	alicuota 
-where alicuota.cuit = '34684733496' 
-and alicuota.id_tipo = 4
