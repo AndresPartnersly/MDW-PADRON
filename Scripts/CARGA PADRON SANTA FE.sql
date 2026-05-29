@@ -24,7 +24,7 @@ CREATE TEMP TABLE temp_csv_upload (
 	);
 
 --CARGA DE DATA EN TABLA TEMPORAL
-copy temp_csv_upload (col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11, col12) FROM '/tmp/SANTAFE/PARP_202605.txt' DELIMITER ';' ENCODING 'UTF8';
+copy temp_csv_upload (col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11, col12) FROM '/tmp/PADRONES/SANTAFE/PARP_202606.txt' DELIMITER ';' ENCODING 'UTF8';
 
 --INSECION DE TABLA TEMPORAL
 INSERT INTO alicuota (id_tipo, cuit, razon_social, alicuota_percepcion, alicuota_retencion, periodo_desde, periodo_hasta)
