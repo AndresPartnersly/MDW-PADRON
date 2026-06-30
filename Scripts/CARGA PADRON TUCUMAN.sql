@@ -20,7 +20,7 @@ CREATE TEMP TABLE tabla1 (
 	);
 
 --CARGA DE DATA EN TABLA TEMPORAL
-copy tabla1 (col1, col2, col3, col4, col5, col6, col7) FROM '/tmp/PADRONES/TUCUMAN/2026-06/ACREDITAN.TXT' DELIMITER ';' ENCODING 'UTF8';
+copy tabla1 (col1, col2, col3, col4, col5, col6, col7) FROM '/tmp/PADRONES/TUCUMAN/2026-07/ACREDITAN.TXT' DELIMITER ';' ENCODING 'UTF8';
 
 
 --INSECION DE TABLA TEMPORAL
@@ -31,8 +31,8 @@ SELECT
 	TRIM(tabla1.col6) as razon_social,
     REPLACE(TRIM(tabla1.col7), ',', '.')::numeric percepcion,
     REPLACE(TRIM(tabla1.col7), ',', '.')::numeric retencion,
-	to_date((SUBSTRING(TRIM('20260601'), 1, 4)||'-'||SUBSTRING(TRIM('20260601'), 5, 2)||'-'||SUBSTRING(TRIM('20260601'), 7, 2)),'yyyy-mm-dd') periodo_desde,
-	to_date((SUBSTRING(TRIM('20260630'), 1, 4)||'-'||SUBSTRING(TRIM('20260630'), 5, 2)||'-'||SUBSTRING(TRIM('20260630'), 7, 2)),'yyyy-mm-dd') periodo_hasta
+	to_date((SUBSTRING(TRIM('20260701'), 1, 4)||'-'||SUBSTRING(TRIM('20260701'), 5, 2)||'-'||SUBSTRING(TRIM('20260701'), 7, 2)),'yyyy-mm-dd') periodo_desde,
+	to_date((SUBSTRING(TRIM('20260731'), 1, 4)||'-'||SUBSTRING(TRIM('20260731'), 5, 2)||'-'||SUBSTRING(TRIM('20260731'), 7, 2)),'yyyy-mm-dd') periodo_hasta
 FROM tabla1
 
 --COEFICIENTES
@@ -57,7 +57,7 @@ CREATE TEMP TABLE tabla2 (
 	col8 text
 	);
 
-	copy tabla2 (col1, col2, col3, col4, col5, col6, col7, col8) FROM '/tmp/PADRONES/TUCUMAN/2026-06/archivocoefrg116.TXT' DELIMITER ';' ENCODING 'UTF8';
+	copy tabla2 (col1, col2, col3, col4, col5, col6, col7, col8) FROM '/tmp/PADRONES/TUCUMAN/2026-07/archivocoefrg116.TXT' DELIMITER ';' ENCODING 'UTF8';
 
 INSERT INTO alicuota (id_tipo, cuit, razon_social, alicuota_percepcion, alicuota_retencion, periodo_desde, periodo_hasta, coeficiente)
 SELECT 
@@ -66,8 +66,8 @@ SELECT
 	TRIM(tabla2.col7) as razon_social,
     REPLACE(TRIM(tabla2.col8), ',', '.')::numeric percepcion,
     REPLACE(TRIM(tabla2.col8), ',', '.')::numeric retencion,
-	to_date((SUBSTRING(TRIM('20260601'), 1, 4)||'-'||SUBSTRING(TRIM('20260601'), 5, 2)||'-'||SUBSTRING(TRIM('20260601'), 7, 2)),'yyyy-mm-dd') periodo_desde,
-	to_date((SUBSTRING(TRIM('20260630'), 1, 4)||'-'||SUBSTRING(TRIM('20260630'), 5, 2)||'-'||SUBSTRING(TRIM('20260630'), 7, 2)),'yyyy-mm-dd') periodo_hasta,
+	to_date((SUBSTRING(TRIM('20260701'), 1, 4)||'-'||SUBSTRING(TRIM('20260701'), 5, 2)||'-'||SUBSTRING(TRIM('20260701'), 7, 2)),'yyyy-mm-dd') periodo_desde,
+	to_date((SUBSTRING(TRIM('20260731'), 1, 4)||'-'||SUBSTRING(TRIM('20260731'), 5, 2)||'-'||SUBSTRING(TRIM('20260731'), 7, 2)),'yyyy-mm-dd') periodo_hasta,
 	REPLACE(TRIM(tabla2.col3), ',', '.')::numeric coeficiente
 FROM tabla2
 
