@@ -21,7 +21,7 @@ CREATE TEMP TABLE temp_entre_rios (
 	);
 
 --CARGA DE DATA EN TABLA TEMPORAL
-copy temp_entre_rios (col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11, col12) FROM '/tmp/PADRONES/ENTRE RIOS/PadronRetPer202608.TXT' DELIMITER ';' ENCODING 'UTF8';
+copy temp_entre_rios (col1, col2, col3, col4, col5, col6, col7, col8, col9, col10, col11, col12) FROM '/tmp/PADRONES/ENTRE RIOS/PadronRetPer202609.TXT' DELIMITER ';' ENCODING 'UTF8';
 
 
 --INSECION DE TABLA TEMPORAL
