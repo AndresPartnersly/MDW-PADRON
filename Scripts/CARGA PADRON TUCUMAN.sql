@@ -31,8 +31,8 @@ SELECT
 	TRIM(tabla1.col6) as razon_social,
     REPLACE(TRIM(tabla1.col7), ',', '.')::numeric percepcion,
     REPLACE(TRIM(tabla1.col7), ',', '.')::numeric retencion,
-	to_date((SUBSTRING(TRIM('20260801'), 1, 4)||'-'||SUBSTRING(TRIM('20260801'), 5, 2)||'-'||SUBSTRING(TRIM('20260801'), 7, 2)),'yyyy-mm-dd') periodo_desde,
-	to_date((SUBSTRING(TRIM('20260831'), 1, 4)||'-'||SUBSTRING(TRIM('20260831'), 5, 2)||'-'||SUBSTRING(TRIM('20260831'), 7, 2)),'yyyy-mm-dd') periodo_hasta
+	to_date((SUBSTRING(TRIM('20260901'), 1, 4)||'-'||SUBSTRING(TRIM('20260901'), 5, 2)||'-'||SUBSTRING(TRIM('20260901'), 7, 2)),'yyyy-mm-dd') periodo_desde,
+	to_date((SUBSTRING(TRIM('20260930'), 1, 4)||'-'||SUBSTRING(TRIM('20260930'), 5, 2)||'-'||SUBSTRING(TRIM('20260930'), 7, 2)),'yyyy-mm-dd') periodo_hasta
 FROM tabla1
 
 --COEFICIENTES
@@ -66,8 +66,8 @@ SELECT
 	TRIM(tabla2.col7) as razon_social,
     REPLACE(TRIM(tabla2.col8), ',', '.')::numeric percepcion,
     REPLACE(TRIM(tabla2.col8), ',', '.')::numeric retencion,
-	to_date((SUBSTRING(TRIM('20260801'), 1, 4)||'-'||SUBSTRING(TRIM('20260801'), 5, 2)||'-'||SUBSTRING(TRIM('20260801'), 7, 2)),'yyyy-mm-dd') periodo_desde,
-	to_date((SUBSTRING(TRIM('20260831'), 1, 4)||'-'||SUBSTRING(TRIM('20260831'), 5, 2)||'-'||SUBSTRING(TRIM('20260831'), 7, 2)),'yyyy-mm-dd') periodo_hasta,
+	to_date((SUBSTRING(TRIM('20260901'), 1, 4)||'-'||SUBSTRING(TRIM('20260901'), 5, 2)||'-'||SUBSTRING(TRIM('20260901'), 7, 2)),'yyyy-mm-dd') periodo_desde,
+	to_date((SUBSTRING(TRIM('20260930'), 1, 4)||'-'||SUBSTRING(TRIM('20260930'), 5, 2)||'-'||SUBSTRING(TRIM('20260930'), 7, 2)),'yyyy-mm-dd') periodo_hasta,
 	REPLACE(TRIM(tabla2.col3), ',', '.')::numeric coeficiente
 FROM tabla2
 
