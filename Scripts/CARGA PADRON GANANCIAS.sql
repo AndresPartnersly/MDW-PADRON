@@ -10,14 +10,12 @@ CREATE TEMP TABLE exclusion_ganancias_tmp (
 	col5 text,
 	col6 text,
 	col7 text,
-	col8 text,
-	col9 text,
-	col10 text
+	col8 text
 	);
 
 --CARGA DE DATA EN TABLA TEMPORAL
 --copy exclusion_ganancias_tmp (col1, col2, col3, col4, col5, col6, col7, col8) FROM '/tmp/PADRONES/GANANCIAS/RG830.txt' DELIMITER ';' ENCODING 'UTF8';
-copy exclusion_ganancias_tmp (col1, col2, col3, col4, col5, col6, col7, col8, col9, col10) FROM '/tmp/PADRONES/GANANCIAS/RG830.txt' DELIMITER ';' ENCODING 'UTF8';
+copy exclusion_ganancias_tmp (col1, col2, col3, col4, col5, col6, col7, col8) FROM '/tmp/PADRONES/GANANCIAS/RG830.txt' DELIMITER ';' ENCODING 'UTF8';
 
 --INSECION DE TABLA TEMPORAL
 INSERT INTO exclusion_ganancias (nro_certificado, cuit, razon_social, periodo_fiscal, porcentaje, resolucion, fecha_desde, fecha_hasta, fecha_desde_archivo, fecha_hasta_archivo)
