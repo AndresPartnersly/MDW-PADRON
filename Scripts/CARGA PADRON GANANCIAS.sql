@@ -28,6 +28,6 @@ SELECT
 	TRIM(col6) as resolucion,
 	to_date((SUBSTRING(TRIM('20261001'), 1, 4)||'-'||SUBSTRING(TRIM('20261001'), 5, 2)||'-'||SUBSTRING(TRIM('20261001'), 7, 2)),'yyyy-mm-dd') periodo_desde,
 	to_date((SUBSTRING(TRIM('20261031'), 1, 4)||'-'||SUBSTRING(TRIM('20261031'), 5, 2)||'-'||SUBSTRING(TRIM('20261031'), 7, 2)),'yyyy-mm-dd') periodo_hasta,
-	to_date((SUBSTRING(TRIM(col9), 7, 4)||'-'||SUBSTRING(TRIM(col9), 4, 2)||'-'||SUBSTRING(TRIM(col7), 1, 2)),'yyyy-mm-dd') fecha_desde_archivo,
-	to_date((SUBSTRING(TRIM(col10), 7, 4)||'-'||SUBSTRING(TRIM(col10), 4, 2)||'-'||SUBSTRING(TRIM(col8), 1, 2)),'yyyy-mm-dd') fecha_hasta_archivo
+	to_date((SUBSTRING(TRIM(col7), 7, 4)||'-'||SUBSTRING(TRIM(col7), 4, 2)||'-'||SUBSTRING(TRIM(col7), 1, 2)),'yyyy-mm-dd') fecha_desde_archivo,
+	to_date((SUBSTRING(TRIM(col8), 7, 4)||'-'||SUBSTRING(TRIM(col8), 4, 2)||'-'||SUBSTRING(TRIM(col8), 1, 2)),'yyyy-mm-dd') fecha_hasta_archivo
 FROM exclusion_ganancias_tmp;
