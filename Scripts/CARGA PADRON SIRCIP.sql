@@ -13,7 +13,7 @@ CREATE TEMP TABLE temp_csv_upload (
 	);
 
 --CARGA DE DATA EN TABLA TEMPORAL
---copy temp_csv_upload (col1, col2, col3, col4, col5, col6, col7) FROM '/tmp/PADRONES/SIRCIP/padron_agentes.txt' DELIMITER ';' ENCODING 'UTF8';
+copy temp_csv_upload (col1, col2, col3, col4, col5, col6, col7) FROM '/tmp/PADRONES/SIRCIP/padron_agentes - copia.txt' DELIMITER ',' ENCODING 'UTF8';
 copy temp_csv_upload (col1, col2, col3, col4, col5, col6, col7) FROM 'C:/Users/Public/Documents/SIRCIP/padron_agentes - copia.txt' DELIMITER ',' ENCODING 'UTF8';
 
 
@@ -30,3 +30,7 @@ SELECT
 	to_date((SUBSTRING(TRIM('20261101'), 1, 4)||'-'||SUBSTRING(TRIM('20261101'), 5, 2)||'-'||SUBSTRING(TRIM('20261101'), 7, 2)),'yyyy-mm-dd') periodo_desde,
 	to_date((SUBSTRING(TRIM('20261130'), 1, 4)||'-'||SUBSTRING(TRIM('20261130'), 5, 2)||'-'||SUBSTRING(TRIM('20261130'), 7, 2)),'yyyy-mm-dd') periodo_hasta
 FROM temp_csv_upload;
+
+
+
+select padron_sircip.cuit as cuit, padron_sircip.razon_social as razon_social, padron_sircip.jurisdiccion_sede as jurisdiccion_sede, padron_sircip.crc as crc, padron_sircip.letra_alicuota as letra_alicuota, padron_sircip.campo_siete as campo_siete, padron_sircip.periodo_desde as periodo_desde, padron_sircip.periodo_hasta as periodo_hasta from padron_sircip where padron_sircip.cuit = ${cuit.toString()} and padron_sircip.periodo_desde <= TO_DATE(${fecha.toString()},'yyyy-mm-dd') and padron_sircip.periodo_hasta >= TO_DATE(${fecha.toString()},'yyyy-mm-dd')
